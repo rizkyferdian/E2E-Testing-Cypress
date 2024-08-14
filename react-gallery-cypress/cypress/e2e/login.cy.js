@@ -48,4 +48,19 @@ describe('Login Page Test Cases', () => {
             expect(text).to.contains("login failed")
         })
     });
+
+    it("Do Login with Correct Values", () => {
+        cy.visit('http://localhost:3000');
+
+        const email = cy.get("input[name='email']");
+        email.type("user@react.test")
+
+        const password = cy.get("input[name='password']");
+        password.type("password")
+
+        const button = cy.get("button");
+        button.click()
+
+        cy.url().should("eq", "http://localhost:3000/dashboard")
+    })
 }) 
